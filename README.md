@@ -14,18 +14,18 @@ similarity across chips, so this project is structured as a monorepo.
 
 For a given chip supported in the lab, there are several relevant pieces:
 - target. Programs meant to run on the microcontroller.
-- driver. This code runs on a microcontroller and interfaces with the 
-target microcontroller. Its core functionality is to set and read the pins
-on the target microcontroller.
+- firmware. This code runs on a microcontroller and interfaces with the 
+target IC. Its core functionality is to set and read the pins
+on the target IC.
 - host. This is code that runs on a more powerful machine, and communicates
-with the driver program over serial.
+with the firmware program over serial.
 - board. This is the electronics design for a board containing the
-driver microcontroller, the target IC, and a serial interface for communicating
+microcontroller, the target IC, and a serial interface for communicating
 with the host.
 
 For the 6502 chip, for example, code lives in the following folders:
 - 6502/target
-- 6502/driver
+- 6502/firmware
 - 6502/host
 - 6502/board
 
