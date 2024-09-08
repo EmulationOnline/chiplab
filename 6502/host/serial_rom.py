@@ -5,7 +5,7 @@ import os
 
 # Configuration
 MAX_CYCLES = 200
-SERIAL_BAUD = 9600
+SERIAL_BAUD = 115200
 
 oldprint = print
 def print(*args, **kwargs):

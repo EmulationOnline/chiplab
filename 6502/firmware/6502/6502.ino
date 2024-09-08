@@ -72,42 +72,43 @@ void setup() {
   pinMode(SHIFT_SHIFT_ELSE_LOAD, OUTPUT);
   pinMode(SHIFT_CLOCK, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
+char line[1024];
 void loop() {
-  String line = Serial.readString();
-    if (line.length() == 0) {
-      // Serial.println("nodata");
-    } else {
-      const char* resp = nullptr;
-      switch(line[0]) {
-        case 'i': { resp = "6502_0.1"; }; break;
-        case 'r' : {
-          reset_6502();
-          shift_reset();
-          // implicit output in above.
-        }; break;
-        case 's': {
-          step_6502();
-          // response is implicit in above
-        }; break;
-        case 'd': {
-          // d1234578\n
-          // sets the data bus
-          data_6502(line);
-          // io implicit
-        } break;
-        case 't' : {
-          // status without step
-            status_6502();
-            // response implicit
-        } break;
-        default: { resp = "unknown"; } break;
-      }
-      if (resp != nullptr) {
-        Serial.println(resp);
-      }
+  size_t n = Serial.readBytesUntil('\n', line, 1022);
+  if (n == 0) return;
+  line[n] = '\n';
+  line[n+1] = 0;
+ 
+    const char* resp = nullptr;
+    switch(line[0]) {
+      case 'i': { resp = "6502_0.1"; }; break;
+      case 'r' : {
+        reset_6502();
+        shift_reset();
+        // implicit output in above.
+      }; break;
+      case 's': {
+        step_6502();
+        // response is implicit in above
+      }; break;
+      case 'd': {
+        // d1234578\n
+        // sets the data bus
+        data_6502(line);
+        // io implicit
+      } break;
+      case 't' : {
+        // status without step
+          status_6502();
+          // response implicit
+      } break;
+      default: { resp = "unknown"; } break;
+    }
+    if (resp != nullptr) {
+      Serial.println(resp);
     }
 }
 
@@ -159,7 +160,7 @@ void shift_reset() {
 }
 
 void shift_delay() {
-  delayMicroseconds(1000);
+  delayMicroseconds(10);
 }
 void shift_load() {
   digitalWrite(SHIFT_SHIFT_ELSE_LOAD, 1);
