@@ -87,7 +87,7 @@ void setup() {
   data_mode(INPUT);
 
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 char line[1024];
@@ -139,10 +139,10 @@ void old_main() {
   }
 }
 
-void data_6502(const String& line) {
+void data_6502(const char* line) {
   bool found = false;
   int32_t acc = 0;
-  for(int i = 1; i < line.length(); i++) {
+  for(int i = 1; line[i] != '\0'; i++) {
     if (line[i] == '\n') {
       found = true;
     } else {
@@ -176,7 +176,7 @@ void shift_reset() {
 
 void shift_delay() {
 //   delayMicroseconds(1000);
-  delayMicroseconds(1000*10);
+  delayMicroseconds(10);
 }
 void shift_load() {
   digitalWrite(SHIFT_SHIFT_ELSE_LOAD, 1);
