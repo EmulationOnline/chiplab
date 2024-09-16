@@ -128,6 +128,7 @@ def port_main(port, memory):
             else:
                 print('6502 wrote {} at {}'.format(hex(status.data),
                                                    hex(status.address)))
+                memory[status.address] = status.data
 
 def usage():
     print("""
