@@ -15,7 +15,7 @@ const int SHIFT_ADDR_LOW_BIT = 5; // PC6;
 const int SHIFT_ADDR_HIGH_BIT = 13; // PC7;
 const int SHIFT_SHIFT_ELSE_LOAD = A5; // PF0;  // high shifts, low loads. ignores clock.
 const int SHIFT_CLOCK = A4; // PF1;
-const int MOS_PIN_SYNC = 9; // PB5
+const int MOS_PIN_SYNC = 10; // PB6
 
 // irq pins, outputs but should be set not not interrupt at
 // startup
@@ -26,18 +26,21 @@ const int MOS_PIN_MLB = 10; // PB6
 
 // Output to MOS
 // PE2 aka HWB Doesnt have a normal digital pin number. Write directly.
-// const int MOS_PIN_RESET = PE2;
+const int MOS_PIN_RESET = A1;
 void setup_mos_pin_reset() {
-  DDRE |= 0x04;  // bit 2 output  
+  // DDRE |= 0x04;  // bit 2 output  
+  pinMode(MOS_PIN_RESET, OUTPUT);
 }
 void set_mos_pin_reset(bool v) {
+  digitalWrite(MOS_PIN_RESET, v);
+  /*
   if (v) {
     PORTE |= 0x04;
   } else {
     PORTE &= ~0x04;
-  }
+  }*/
 }
-const int MOS_PIN_CLOCK = 17; // PB0;
+const int MOS_PIN_CLOCK = A0; // PF7;
 // Input from MOS
 const int MOS_PIN_RWB = 8; // PB4;
 
@@ -46,13 +49,13 @@ const int DATA_PINS_HL [] = {
   // high to low, since this is natural order for reading
   6,  // PD7,
   12, // PD6,
-  30, // PD5,
+  9, // PB5,
   4,  // PD4,
   
-  1,  // PD3,
-  0,  // PD2,
-  2,  // PD1,
-  3,  // PD0,
+  A2,  // PF5(A2),
+  A3,  // PF4(A3),
+  2,  // PD1
+  3,  // PD0
 };
 
 void data_mode(int mode) {
