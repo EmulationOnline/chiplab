@@ -114,6 +114,7 @@ def port_verify(port):
 def port_main(port, memory):
     assert len(memory) == 0x10000
     port_verify(port)
+    memory = bytearray(memory)
     with tty_open(port) as tty:
         tty_write(tty, "reset")
         assert tty_readline(tty) == 'reset.'
