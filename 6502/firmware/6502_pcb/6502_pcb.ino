@@ -26,7 +26,8 @@ const int MOS_PIN_MLB = 10; // PB6
 
 // Output to MOS
 // PE2 aka HWB Doesnt have a normal digital pin number. Write directly.
-const int MOS_PIN_RESET = A1;
+const int MOS_PIN_RESET = A0; // PF7;
+const int MOS_PIN_CLOCK = A1;
 void setup_mos_pin_reset() {
   // DDRE |= 0x04;  // bit 2 output  
   pinMode(MOS_PIN_RESET, OUTPUT);
@@ -40,7 +41,6 @@ void set_mos_pin_reset(bool v) {
     PORTE &= ~0x04;
   }*/
 }
-const int MOS_PIN_CLOCK = A0; // PF7;
 // Input from MOS
 const int MOS_PIN_RWB = 8; // PB4;
 
