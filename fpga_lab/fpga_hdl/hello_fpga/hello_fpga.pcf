@@ -1,7 +1,8 @@
-set_io CLK 35
-set_io ALWAYS_PIN 12
-set_io CTR0 11
-set_io CTR1 10
-set_io CTR2 9
+set_io CLK D1
+set_io ALWAYS_PIN B5
+# b6 is the onboard led pin
+set_io CTR0 B6
+set_io CTR1 B4
+set_io CTR2 B3
 
 

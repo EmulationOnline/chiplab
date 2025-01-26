@@ -16,9 +16,9 @@ obj_dir/Vhello_fpga.h: hello_fpga.v
 # ICESTORM targets for synthesis
 PROJ = hello_fpga
 PIN_DEF = hello_fpga.pcf
-DEVICE = up5k
+DEVICE = lp1k
 # DEVICE = hx1k
-PACKAGE = sg48
+PACKAGE = cm36
 
 all: $(PROJ).rpt $(PROJ).bin
 
