@@ -2,20 +2,20 @@
 test: tests
 	./tests
 
+PROJ = hello_fpga
 # build tests
 # assumes googletest installed (tested w/ v1.15.2)
-tests: hello_fpga.v tests.cc obj_dir/Vhello_fpga.h
-	$(CXX) tests.cc -o tests -lgtest_main -lgtest `pkg-config --cflags verilator` obj_dir/libverilated.a obj_dir/libVhello_fpga.a
+tests: $(PROJ).v tests.cc obj_dir/V$(PROJ).h
+	$(CXX) tests.cc -o tests -lgtest_main -lgtest `pkg-config --cflags verilator` obj_dir/libverilated.a obj_dir/libV$(PROJ).a
 
 
 # Verilator 
-obj_dir/Vhello_fpga.h: hello_fpga.v
-	verilator --cc hello_fpga.v
-	make -C obj_dir -f Vhello_fpga.mk
+obj_dir/V$(PROJ).h: $(PROJ).v
+	verilator --cc $(PROJ).v
+	make -C obj_dir -f V$(PROJ).mk
 
 # ICESTORM targets for synthesis
-PROJ = hello_fpga
-PIN_DEF = hello_fpga.pcf
+PIN_DEF = $(PROJ).pcf
 DEVICE = up5k
 # DEVICE = hx1k
 PACKAGE = sg48
