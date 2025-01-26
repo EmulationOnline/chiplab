@@ -1,0 +1,7 @@
+set_io CLK 35
+set_io ALWAYS_PIN 12
+set_io CTR0 11
+set_io CTR1 10
+set_io CTR2 9
+
+

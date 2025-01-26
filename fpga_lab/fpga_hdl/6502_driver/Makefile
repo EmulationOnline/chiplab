@@ -1,5 +1,7 @@
 PROJ = driver6502
 
+all: test verilate
+
 # run tests
 TESTS = test_clk_divider
 test: test_clk_divider
@@ -20,6 +22,8 @@ test_clk_divider: test_clk_divider.cc obj_dir/Vclk_divider.h
 	$(CXX) $< -o $@ -lgtest_main -lgtest `pkg-config --cflags verilator` obj_dir/libverilated.a obj_dir/libVclk_divider.a
 
 
+verilate: obj_dir/Vclk_divider.h obj_dir/Vdriver6502.h
+
 # Verilator 
 # TODO: generalize
 # obj_dir/V%.h: %.v
@@ -28,6 +32,10 @@ test_clk_divider: test_clk_divider.cc obj_dir/Vclk_divider.h
 obj_dir/Vclk_divider.h: clk_divider.v
 	verilator --cc $<
 	make -C obj_dir -f Vclk_divider.mk
+
+obj_dir/Vdriver6502.h: driver6502.v
+	verilator --cc $<
+	make -C obj_dir -f Vdriver6502.mk
 
 # ICESTORM targets for synthesis
 PIN_DEF = 6502_driver.pcf
