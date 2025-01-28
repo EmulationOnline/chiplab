@@ -1,0 +1,7 @@
+set_io CLK 35
+# For ease of implementation, the first pin lit is bit 0
+# of OUTPUT
+set_io OUTPUT[0] 23
+set_io OUTPUT[1] 25
+
+
