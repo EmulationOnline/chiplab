@@ -1,0 +1,13 @@
+set_io CLK 35
+
+# TODO configure these
+set_io RESET 10
+set_io RW 11
+set_io DATA[7]  12
+set_io DATA[6]  13
+set_io DATA[5]  14
+set_io DATA[4] 15
+set_io DATA[3] 16
+set_io DATA[2] 17
+set_io DATA[1] 18
+set_io DATA[0] 19
