@@ -1,0 +1,6 @@
+[submodule "cart_gb/kicad-gamepaks"]
+	path = cart_gb/kicad-gamepaks
+	url = https://github.com/djedditt/kicad-gamepaks.git
+[submodule "cart_gb/gekkio-kicad-libs"]
+	path = cart_gb/gekkio-kicad-libs
+	url = https://github.com/Gekkio/gekkio-kicad-libs.git
